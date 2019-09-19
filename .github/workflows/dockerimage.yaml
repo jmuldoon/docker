@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Build the Go Docker image
-      run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/{owner}/{repo}/go-ci:$(cat images/go/VERSION)-$(date +%s)
+      run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-$(date +%s)
 
     - name: Publish the Go Docker image
-      run: docker push docker.pkg.github.com/{owner}/{repo}/go-ci:$(cat images/go/VERSION)-$(date +%s)
+      run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-$(date +%s)
