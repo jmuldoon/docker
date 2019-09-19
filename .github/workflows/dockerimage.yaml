@@ -9,26 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Build the Go Docker image SNAPSHOT
-      run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-SNAPSHOT
-      if: git branch | grep \* | cut -d ' ' -f2 == 'feature/*'
-
-    - name: Publish the Go Docker image SNAPSHOT
-      run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-SNAPSHOT
-      if: git branch | grep \* | cut -d ' ' -f2 == 'feature/*'
-
     - name: Build the Go Docker image
       run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
-      if: git branch | grep \* | cut -d ' ' -f2 == 'release/*'
 
     - name: Publish the Go Docker image
       run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
-      if: git branch | grep \* | cut -d ' ' -f2 == 'release/*'
 
-    - name: Build the Go Docker image
-      run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-rc
-      if: git branch | grep \* | cut -d ' ' -f2 == 'master'
-
-    - name: Publish the Go Docker image
-      run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)-rc
-      if: git branch | grep \* | cut -d ' ' -f2 == 'master'
