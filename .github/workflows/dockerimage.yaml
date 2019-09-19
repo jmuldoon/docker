@@ -9,18 +9,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Login Docker registry
-      uses: actions/docker/login@master
-      env:
-        DOCKER_REGISTRY_URL: docker.pkg.github.com
-        DOCKER_USERNAME: ${{ github.actor }}
-        DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-
     - name: Build the Go Docker image
       run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
 
-    - name: Publish the Go Docker image
-      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/go-ci:$(cat images/go/VERSION) --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+    - name: Login and Publish the Go Docker image
+      uses: actions/docker/login@master
+      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/go-ci:$(cat images/go/VERSION)
       env:
         DOCKER_REGISTRY_URL: docker.pkg.github.com
         DOCKER_USERNAME: ${{ github.actor }}
