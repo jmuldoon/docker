@@ -9,13 +9,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Log in to Docker Registry
+    - name: Login to GitHub Docker Registry
+        # run: docker login docker.pkg.github.com --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
         uses: actions/docker/login@master
         env:
           DOCKER_REGISTRY_URL: docker.pkg.github.com
           DOCKER_USERNAME: ${{ github.actor }}
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push'
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 
     - name: Build the Go Docker image
       run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
