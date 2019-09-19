@@ -21,3 +21,6 @@ jobs:
 
     - name: Publish the Go Docker image
       run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
+      env:
+        DOCKER_USERNAME: ${{ github.actor }}
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
