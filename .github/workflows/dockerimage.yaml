@@ -20,7 +20,8 @@ jobs:
       run: docker build images/go/. --file images/go/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
 
     - name: Publish the Go Docker image
-      run: docker push docker.pkg.github.com/jmuldoon/docker/go-ci:$(cat images/go/VERSION)
+      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/go-ci:$(cat images/go/VERSION) --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
       env:
+        DOCKER_REGISTRY_URL: docker.pkg.github.com
         DOCKER_USERNAME: ${{ github.actor }}
         DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
