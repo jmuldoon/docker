@@ -1,8 +1,8 @@
-FROM alpine:3.10.2
+FROM python:3.8.0rc1-alpine3.10
 LABEL maintainer="james@muldoon.io"
 
+ENV PATH /usr/local/bin:$PATH
+ENV LANG C.UTF-8
+
 RUN apk update &&\
-  apk add make gcc libc-dev python3-dev --no-cache &&\
-  ln -sfn /usr/bin/python3 /usr/bin/python &&\
-  ln -sfn /usr/bin/pip3 /usr/bin/pip &&\
-  python -m pip install --upgrade pip
+  apk add make --no-cache

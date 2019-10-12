@@ -11,7 +11,7 @@
 
 ## Python
 
-- Python 3.7.4 on Alpine 3.10.2
+- Python 3.8.0 rc1 on Alpine 3.10
 
 ### Notes
 
