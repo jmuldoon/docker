@@ -16,3 +16,11 @@ services:
     working_dir: /go/src/github.com/jmuldoon/go-keychain
     volumes:
       - ${GOPATH}:/go
+  python:
+    build:
+      context: ./images/python
+      dockerfile: Dockerfile
+    container_name: "python"
+    working_dir: /wk/run-n-player-game
+    volumes:
+      - ${WORKSPACE}/python/run-n-player-game:/wk/run-n-player-game
