@@ -3,14 +3,15 @@ LABEL maintainer="james@muldoon.io"
 
 ENV PACKAGES="\
   build-base \
-  make \
-  gcc \
-  libc-dev \
   freetype-dev \
-  pkgconfig \
-  openblas-dev \
   gfortran \
+  libc-dev \
+  libpng-dev \
+  make \
+  openblas-dev \
+  pkgconfig \
+  wget \
   "
 
 RUN apk update &&\
-  apk add --no-cache $PACKAGES
+  apk add --no-cache --update-cache $PACKAGES
