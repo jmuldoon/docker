@@ -24,7 +24,9 @@
 
 To build the files run the following
 
-- latexmk -pdf file.tex
+```sh
+latexmk -pdf file.tex
+```
 
 ## Python
 
