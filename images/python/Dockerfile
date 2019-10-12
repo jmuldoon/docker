@@ -1,7 +1,16 @@
-FROM alpine:3.10.2
+FROM python:3.8.0rc1-alpine3.10
 LABEL maintainer="james@muldoon.io"
 
-RUN apk add make python3 --no-cache &&\
-  ln -sfn /usr/bin/python3 /usr/bin/python &&\
-  ln -sfn /usr/bin/pip3 /usr/bin/pip &&\
-  python -m pip install --upgrade pip
+ENV PACKAGES="\
+  build-base \
+  make \
+  gcc \
+  libc-dev \
+  freetype-dev \
+  pkgconfig \
+  openblas-dev \
+  gfortran \
+  "
+
+RUN apk update &&\
+  apk add --no-cache $PACKAGES
