@@ -47,24 +47,24 @@ jobs:
           DOCKER_USERNAME: ${{ github.actor }}
         run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/latex-ci:$(cat images/latex/VERSION)
 
-build-python:
-  runs-on: ubuntu-latest
+  build-python:
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v1
+    steps:
+      - uses: actions/checkout@v1
 
-    - name: Login Docker Registry
-      env:
-        DOCKER_REGISTRY_URL: docker.pkg.github.com
-        DOCKER_USERNAME: ${{ github.actor }}
-        DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-      run: echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY_URL --username $DOCKER_USERNAME --password-stdin
+      - name: Login Docker Registry
+        env:
+          DOCKER_REGISTRY_URL: docker.pkg.github.com
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+        run: echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY_URL --username $DOCKER_USERNAME --password-stdin
 
-    - name: Build the Python3.7 Docker image
-      run: docker build images/python/. --file images/python/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/python-ci:$(cat images/python/VERSION)
+      - name: Build the Python3.7 Docker image
+        run: docker build images/python/. --file images/python/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/python-ci:$(cat images/python/VERSION)
 
-    - name: Publish the Python3.7 Docker image
-      env:
-        DOCKER_REGISTRY_URL: docker.pkg.github.com
-        DOCKER_USERNAME: ${{ github.actor }}
-      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/python-ci:$(cat images/python/VERSION)
+      - name: Publish the Python3.7 Docker image
+        env:
+          DOCKER_REGISTRY_URL: docker.pkg.github.com
+          DOCKER_USERNAME: ${{ github.actor }}
+        run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/python-ci:$(cat images/python/VERSION)
