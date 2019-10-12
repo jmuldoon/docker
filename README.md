@@ -9,6 +9,10 @@
 
 - latex on Alpine 3.10.2
 
+## Python
+
+- Python 3.7.4 on Alpine 3.10.2
+
 ### Notes
 
 To build the files run the following

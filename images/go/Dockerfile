@@ -3,6 +3,6 @@ LABEL maintainer="james@muldoon.io"
 
 ENV GOPROXY https://goproxy.muldoon.io,direct
 ENV GONOSUMDB *.muldoon.io
-# ENV GOPRIVATE *.muldoon.io
 
-RUN apk add git vim make gcc libc-dev --no-cache
+RUN apk update &&\
+  apk add make gcc libc-dev --no-cache
