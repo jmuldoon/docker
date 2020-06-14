@@ -1,6 +1,8 @@
 # Docker Images Repository
 [![Actions Status](https://github.com/jmuldoon/docker/workflows/Build%20and%20Publish/badge.svg)](https://github.com/jmuldoon/docker/actions)
 
+All Containers are SHA256 pinned to ensure image.
+
 <!-- TOC -->
 
 - [Docker Images Repository](#docker-images-repository)
@@ -14,11 +16,11 @@
 
 ## Go
 
-- go 1.13.1 on Alpine 3.10
+- go 1.14.4 on Alpine 3.12
 
 ## LaTeX
 
-- latex on Alpine 3.10.2
+- latex on Alpine 3.12
 
 ### Notes
 
@@ -30,7 +32,7 @@ latexmk -pdf file.tex
 
 ## Python
 
-- Python 3.8.0 rc1 on Alpine 3.10
+- Python 3.8.3 on Alpine 3.12
 
 ### Notes
 

@@ -1,4 +1,4 @@
-FROM python:3.8.0rc1-alpine3.10
+FROM python:3.8.3-alpine3.12@sha256:c5623df482648cacece4f9652a0ae04b51576c93773ccd43ad459e2a195906dd
 LABEL maintainer="james@muldoon.io"
 
 ENV PACKAGES="\
