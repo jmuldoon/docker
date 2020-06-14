@@ -1,26 +1,29 @@
 version: "3.5"
 services:
   latex:
+    container_name: "latex"
     build:
       context: ./images/latex
       dockerfile: Dockerfile
-    container_name: "latex"
+    restart: always
     working_dir: /wk/self-assessment
     volumes:
       - ${WORKSPACE}/self-assessment:/wk/self-assessment
   go:
+    container_name: "golang"
     build:
       context: ./images/go
       dockerfile: Dockerfile
-    container_name: "golang"
+    restart: always
     working_dir: /go/src/github.com/jmuldoon/go-keychain
     volumes:
       - ${GOPATH}:/go
   python:
+    container_name: "python"
     build:
       context: ./images/python
       dockerfile: Dockerfile
-    container_name: "python"
+    restart: always
     working_dir: /wk/run-n-player-game
     volumes:
       - ${WORKSPACE}/python/run-n-player-game:/wk/run-n-player-game
