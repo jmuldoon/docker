@@ -3,4 +3,5 @@ LABEL maintainer="james@muldoon.io"
 
 # texlive-full (works for my use), but won't push properly to the repo
 RUN apk update &&\
-  apk add make texlive --no-cache
+  apk add make texlive-full --no-cache
+  # apk add make texlive --no-cache
