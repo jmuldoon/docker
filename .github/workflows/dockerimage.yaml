@@ -23,7 +23,7 @@ jobs:
         env:
           DOCKER_REGISTRY_URL: docker.pkg.github.com
           DOCKER_USERNAME: ${{ github.actor }}
-        run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/go-ci:$(cat images/go/VERSION)
+        run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/go-ci:$(cat images/go/VERSION | tr -d '[:space:]')
 
   build-latex:
     runs-on: ubuntu-latest
@@ -39,13 +39,13 @@ jobs:
         run: echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY_URL --username $DOCKER_USERNAME --password-stdin
 
       - name: Build the LaTeX Docker image
-        run: docker build images/latex/. --file images/latex/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/latex-ci:$(cat images/latex/VERSION)
+        run: docker build images/latex/. --file images/latex/Dockerfile -t docker.pkg.github.com/jmuldoon/docker/latex-ci:$(cat images/latex/VERSION | tr -d '[:space:]')
 
       - name: Publish the LaTeX Docker image
         env:
           DOCKER_REGISTRY_URL: docker.pkg.github.com
           DOCKER_USERNAME: ${{ github.actor }}
-        run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/latex-ci:$(cat images/latex/VERSION)
+        run: docker push $DOCKER_REGISTRY_URL/$DOCKER_USERNAME/docker/latex-ci:$(cat images/latex/VERSION | tr -d '[:space:]')
 
   build-python:
     runs-on: ubuntu-latest
