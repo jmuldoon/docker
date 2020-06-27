@@ -5,10 +5,12 @@ ENV PACKAGES="\
   build-base \
   freetype-dev \
   gfortran \
+  git \
   libc-dev \
   libpng-dev \
   make \
   openblas-dev \
+  openssh \
   pkgconfig \
   wget \
   "

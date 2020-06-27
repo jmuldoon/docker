@@ -4,5 +4,13 @@ LABEL maintainer="james@muldoon.io"
 ENV GOPROXY https://goproxy.muldoon.io,direct
 ENV GONOSUMDB *.muldoon.io
 
+ENV PACKAGES="\
+  gcc \
+  git \
+  libc-dev \
+  make \
+  openssh \
+  "
+
 RUN apk update &&\
-  apk add make gcc libc-dev --no-cache
+  apk add --no-cache --update-cache $PACKAGES
